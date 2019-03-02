@@ -96,13 +96,13 @@
     // Sort the people alphabetically by last name
 
     const alpha = people.sort((a, b) => {
-      // const [aLast, aFirst] = a.split(', ');
-      // const [bLast, bFirst] = b.split(', ');
-      // return aLast > bLast ? 1 : -1;
+      // const lastNameA =  a.split(', ')[1];
+      // const lastNameB =  b.split(', ')[1];
+      // return lastNameA > lastNameB ? 1 : -1;
 
-      const lastNameA =  a.split(', ')[1];
-      const lastNameB =  b.split(', ')[1];
-      return lastNameA > lastNameB ? 1 : -1;
+      const [aLast, aFirst] = a.split(', ');
+      const [bLast, bFirst] = b.split(', ');
+      return aLast > bLast ? 1 : -1;
     });
 
     console.log(alpha);
@@ -122,15 +122,15 @@
 
     // console.log(dataSum);
 
-    // const transportation = data.reduce(function(obj, item) {
-    //   if(!obj[item]) {
-    //     obj[item] = 0;
-    //   }
-    //   obj[item]++;
-    //   return obj;
-    // }, {});
+    const transportation = data.reduce(function(obj, item) {
+      if(!obj[item]) {
+        obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;
+    }, {});
 
-    // console.log(transportation);
+    console.log(transportation);
 
   </script>
 </body>
