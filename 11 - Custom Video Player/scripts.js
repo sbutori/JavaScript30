@@ -39,7 +39,11 @@ function scrub(e) {
 }
 
 function handleFullscreen() {
-  video.requestFullscreen();
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    player.requestFullscreen();
+  }
 }
 
 /* Hook up the event listeners */
