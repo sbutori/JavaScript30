@@ -182,6 +182,39 @@
     </li>
   </ul>
 <script>
+
+  const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
+
+  const seconds = timeNodes.reduce(function(total, node) {
+    const [mins, secs] = node.dataset.time.split(':').map(parseFloat);
+    return total + (mins * 60) + secs;
+  }, 0);
+
+    // ORIGINAL SOLUTION (Wes bos):
+
+    // // Get each time in 'M:ss' format from 'data-time' dataset attribute
+    // .map(node => node.dataset.time)
+    //
+    // // Convert each time from 'M:ss' string to an integer with total time in seconds
+    // .map(timeCode => {
+    //   const [mins, secs] = timeCode.split(':').map(parseFloat);
+    //   return (mins * 60) + secs;
+    // })
+    //
+    // // Reduce every item in the seconds array to a total value of all videos in seconds
+    // .reduce((total, duration) => total + duration);
+
+    // Then translate that value into three variables -- hours, minutes(mins) and seconds(secondsLeft)
+    let secondsLeft = seconds;
+    const hours = Math.floor(secondsLeft / 3600);
+    secondsLeft = secondsLeft % 3600;
+
+    const mins = Math.floor(secondsLeft / 60);
+    secondsLeft = mins % 60;
+    console.log(`
+      Total Duration of Videos:
+      ${hours} hours, ${mins} minutes and ${secondsLeft} seconds
+    `);
 </script>
 </body>
 </html>
