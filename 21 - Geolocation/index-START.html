@@ -14,11 +14,14 @@
     <span class="units">KM/H</span>
   </h1>
 
+  <h2 class="coordinates">
+  </h2>
+
   <style>
     html {
       font-size: 100px;
     }
-    
+
     body {
       margin: 0;
       font-family: sans-serif;
@@ -45,12 +48,17 @@
       display: inline-block;
     }
 
-    h1 {
+    h1, h2 {
       color: white;
       font-weight: 100;
       font-size: 60px;
       display: flex;
       align-items: center;
+    }
+
+    h2 {
+      font-size: 30px;
+      text-align: center;
     }
 
     .units {
@@ -59,6 +67,24 @@
     /*Compass: https://thenounproject.com/search/?q=compass&i=592352*/
   </style>
   <script>
+    const arrow =document.querySelector(
+      '.arrow');
+    const speed = document.querySelector('.speed-value');
+    const coordinates = document.querySelector('.coordinates');
+
+    navigator.geolocation.watchPosition((data) => {
+      // console.log(data);
+      speed.textContent = data.coords.speed;
+      arrow.style.transform = `rotate(${ data.coords.heading }deg)`;
+      coordinates.innerHTML = `
+      Your current coordinates are: <br>
+      latitude: ${Math.round(data.coords.latitude * 1000) / 1000} degrees <br>
+      and<br>
+      longitude: ${Math.round(data.coords.longitude * 1000) / 1000} degrees
+      `
+    }, (err) => {
+      console.error(err);
+    });
   </script>
 </body>
 </html>
